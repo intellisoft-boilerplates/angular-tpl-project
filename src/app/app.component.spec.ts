@@ -1,5 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpModule } from '@angular/http';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -14,8 +16,9 @@ describe('AppComponent', () => {
       ],
       imports: [
         RouterTestingModule.withRoutes([
-         { path: 'view1', component: HomeComponent }
-        ])
+         { path: '', component: HomeComponent }
+        ]),
+        HttpModule,
       ],
     }).compileComponents();
   }));
