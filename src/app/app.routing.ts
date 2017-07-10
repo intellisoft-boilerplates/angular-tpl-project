@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home';
+import { RegisterComponent } from './register';
+import { PageNotFoundComponent } from './page-not-found';
 import { RouterModule, Routes } from '@angular/router';
-import { environment } from '../environments/environment';
+import { AuthGuard } from './_guards';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', loadChildren: './login/login.module#LoginModule' }
+  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'login', loadChildren: './login/index#LoginModule' },
+  { path: 'register', component: RegisterComponent },
+  { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { enableTracing: !environment.production } )],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

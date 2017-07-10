@@ -1,37 +1,35 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '../_services/auth.service';
-import { AlertService } from '../_services/alert.service';
 import { HttpModule } from '@angular/http';
 
+import { RegisterComponent } from './register.component';
+import { AlertService, UserService } from '../_services';
 
-import { LoginComponent } from './login.component';
-
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('RegisterComponent', () => {
+  let component: RegisterComponent;
+  let fixture: ComponentFixture<RegisterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
       imports: [
         RouterTestingModule,
         FormsModule,
         CommonModule,
         HttpModule
       ],
+      declarations: [ RegisterComponent ],
       providers: [
-        AuthService,
-        AlertService
+        AlertService,
+        UserService
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

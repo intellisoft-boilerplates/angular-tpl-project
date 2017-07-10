@@ -2,9 +2,14 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 
+import { AuthService, AlertService } from './_services';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './_guards';
+import { AppRoutingModule as routing } from './app.routing';
+import { PageNotFoundComponent } from './page-not-found';
+import { AlertComponent } from './_directives/alert';
 
 
 describe('AppComponent', () => {
@@ -12,14 +17,21 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        PageNotFoundComponent,
+        AlertComponent
       ],
       imports: [
         RouterTestingModule.withRoutes([
          { path: '', component: HomeComponent }
         ]),
-        HttpModule,
+        HttpModule
       ],
+      providers: [
+        AuthGuard,
+        AuthService,
+        AlertService
+      ]
     }).compileComponents();
   }));
 
