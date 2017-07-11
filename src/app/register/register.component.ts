@@ -12,7 +12,7 @@ import { User } from '../_models';
 
 export class RegisterComponent {
   model: User = new User;
-  loading: boolean;
+  loading = false;
   constructor(
     private router: Router,
     private userService: UserService,
