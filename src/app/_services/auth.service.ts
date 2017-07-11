@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
+import { User } from '../_models';
 
 
 
@@ -22,12 +23,16 @@ export class AuthService {
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
 
-        return user;
+        return new User(user);
       });
   }
 
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+  }
+
+  get isAuthenticated(): boolean {
+    return !!localStorage.getItem('currentUser');
   }
 }
